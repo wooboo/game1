@@ -1,0 +1,24 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#799af2",
+        "activityBar.activeBorder": "#cb1446",
+        "activityBar.background": "#799af2",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#cb1446",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "statusBar.background": "#4b77ed",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#799af2",
+        "titleBar.activeBackground": "#4b77ed",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#4b77ed99",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#4b77ed",
+    "cSpell.words": [
+        "Redhat",
+        "anims",
+        "spritesheet"
+    ]
+}

@@ -1,0 +1,85 @@
+{
+  "preload": {
+    "files": [
+      {
+        "type": "bitmapFont",
+        "key": "font",
+        "textureURL": "./assets/font/font.png",
+        "fontDataURL": "./assets/font/font.fnt"
+      },
+      {
+        "type": "image",
+        "key": "background",
+        "url": "./assets/images/bg.png"
+      },
+      {
+        "type": "image",
+        "key": "bird",
+        "url": "./assets/images/bird.png"
+      },
+      {
+        "type": "image",
+        "key": "enemy1",
+        "url": "./assets/images/enemy1.png"
+      },
+      {
+        "type": "image",
+        "key": "enemy2",
+        "url": "./assets/images/enemy2.png"
+      },
+      {
+        "type": "image",
+        "key": "enemy3",
+        "url": "./assets/images/enemy3.png"
+      },
+      {
+        "type": "image",
+        "key": "enemy4",
+        "url": "./assets/images/enemy4.png"
+      },
+      {
+        "type": "image",
+        "key": "enemy5",
+        "url": "./assets/images/enemy5.png"
+      },
+      {
+        "type": "image",
+        "key": "enemy6",
+        "url": "./assets/images/enemy6.png"
+      },
+      {
+        "type": "image",
+        "key": "enemy7",
+        "url": "./assets/images/enemy7.png"
+      },
+      {
+        "type": "image",
+        "key": "enemy8",
+        "url": "./assets/images/enemy8.png"
+      },
+      {
+        "type": "image",
+        "key": "enemy9",
+        "url": "./assets/images/enemy9.png"
+      },
+      {
+        "type": "spritesheet",
+        "key": "pipe",
+        "url": "./assets/sprites/pipe.png",
+        "frameConfig": {
+          "frameWidth": 20,
+          "frameHeight": 20
+        }
+      },
+      {
+        "type": "spritesheet",
+        "key": "jurek",
+        "url": "./assets/sprites/spritesheet_j.png",
+        "frameConfig": {
+          "frameWidth": 203,
+          "frameHeight": 203
+        }
+      }
+    ]
+  }
+}
