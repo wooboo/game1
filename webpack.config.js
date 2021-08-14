@@ -1,34 +1,58 @@
-const path = require('path');
+const path = require("path");
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  entry: './src/game.ts',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        include: path.resolve(__dirname, 'src'),
-        loader: 'ts-loader'
-      },
-      {
-        test: require.resolve('Phaser'),
-        loader: 'expose-loader',
-        options: { exposes: { globalName: 'Phaser', override: true } }
-      }
+    entry: {
+        main: "./src/index.ts"
+    },
+    output: {
+        path: path.resolve(__dirname, "./dist"),
+        filename: "[name]-[contenthash].bundle.js",
+        assetModuleFilename: "asset-packs/[name]-[hash][ext][query]"
+    },
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: "ts-loader",
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.json/,
+                type: "asset/resource"
+            }
+        ],
+    },
+    resolve: {
+        extensions: [".tsx", ".ts", ".js"],
+    },
+    devServer: {
+        historyApiFallback: true,
+        contentBase: path.resolve(__dirname, "./dist"),
+        open: true,
+        hot: true,
+        port: 8080,
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, "src/index.html"),
+            minify: false
+        }),
+        new CleanWebpackPlugin(),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: "static",
+                    globOptions: {
+                        // asset pack files are imported in code as modules
+                        ignore: ["**/publicroot", "**/*-pack.json"]
+                    }
+                }
+            ]
+        }),
+        new webpack.HotModuleReplacementPlugin(),
     ]
-  },
-  devtool: 'source-map',
-  devServer: {
-    contentBase: path.resolve(__dirname, './'),
-    publicPath: '/dist/',
-    host: 'localhost',
-    port: 8080,
-    open: false
-  },
-  resolve: {
-    extensions: ['.ts', '.js']
-  }
 };

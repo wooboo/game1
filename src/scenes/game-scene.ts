@@ -25,12 +25,12 @@ export class GameScene extends Phaser.Scene {
       .tileSprite(0, 0, document.documentElement.clientWidth, 444, "background")
       .setOrigin(0, 0);
 
-      this.trees = this.add
+    this.trees = this.add
       .tileSprite(
         0,
         0,
         document.documentElement.clientWidth,
-        447,
+        400,
         "trees"
       )
       .setOrigin(0, 1)

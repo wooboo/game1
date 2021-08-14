@@ -1,3 +1,5 @@
+import Phaser from "phaser";
+
 export class BootScene extends Phaser.Scene {
   private loadingBar: Phaser.GameObjects.Graphics;
   private progressBar: Phaser.GameObjects.Graphics;
@@ -16,7 +18,7 @@ export class BootScene extends Phaser.Scene {
     // pass value to change the loading bar fill
     this.load.on(
       'progress',
-      function (value: number) {
+      (value: number) => {
         this.progressBar.clear();
         this.progressBar.fillStyle(0xfff6d3, 1);
         this.progressBar.fillRect(
@@ -32,7 +34,7 @@ export class BootScene extends Phaser.Scene {
     // delete bar graphics, when loading complete
     this.load.on(
       'complete',
-      function () {
+      () => {
         this.progressBar.destroy();
         this.loadingBar.destroy();
       },
