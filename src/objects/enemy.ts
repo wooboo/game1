@@ -13,7 +13,7 @@ export class Enemy extends Phaser.GameObjects.Image {
     // physics
     this.scene.physics.world.enable(this);
     this.body.allowGravity = false;
-    this.body.setVelocityX(-200);
+    this.body.setVelocityX(-300);
     this.body.setSize(500, 500);
 
     this.scene.add.existing(this);

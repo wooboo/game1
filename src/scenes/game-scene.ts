@@ -5,6 +5,8 @@ export class GameScene extends Phaser.Scene {
   private player: Player;
   private enemies: Phaser.GameObjects.Group;
   private background: Phaser.GameObjects.TileSprite;
+  private foreground: Phaser.GameObjects.TileSprite;
+  private trees: Phaser.GameObjects.TileSprite;
   private scoreText: Phaser.GameObjects.BitmapText;
   private timer: Phaser.Time.TimerEvent;
 
@@ -20,14 +22,30 @@ export class GameScene extends Phaser.Scene {
 
   create(): void {
     this.background = this.add
+      .tileSprite(0, 0, document.documentElement.clientWidth, 444, "background")
+      .setOrigin(0, 0);
+
+      this.trees = this.add
       .tileSprite(
         0,
         0,
         document.documentElement.clientWidth,
-        document.documentElement.clientHeight,
-        "background"
+        447,
+        "trees"
       )
-      .setOrigin(0, 0);
+      .setOrigin(0, 1)
+      .setPosition(0, document.documentElement.clientHeight-153);
+
+    this.foreground = this.add
+      .tileSprite(
+        0,
+        0,
+        document.documentElement.clientWidth,
+        153,
+        "foreground"
+      )
+      .setOrigin(0, 1)
+      .setPosition(0, document.documentElement.clientHeight);
 
     this.scoreText = this.add
       .bitmapText(
@@ -52,7 +70,9 @@ export class GameScene extends Phaser.Scene {
 
   update(): void {
     if (!this.player.getDead()) {
-      this.background.tilePositionX += 4;
+      this.background.tilePositionX += 2;
+      this.foreground.tilePositionX += 4.35;
+      this.trees.tilePositionX += 2.5;
       this.player.update();
       this.physics.overlap(
         this.player,
@@ -64,7 +84,6 @@ export class GameScene extends Phaser.Scene {
         this
       );
     } else {
-
       Phaser.Actions.Call(
         this.enemies.getChildren(),
         function (enemy: Enemy) {
@@ -72,10 +91,7 @@ export class GameScene extends Phaser.Scene {
         },
         this
       );
-
-      if (this.player.y > this.sys.canvas.height) {
-        this.scene.start("MainMenuScene");
-      }
+      this.scene.start("MainMenuScene");
     }
   }
 
@@ -83,15 +99,18 @@ export class GameScene extends Phaser.Scene {
     // update the score
     this.registry.values.score += 1;
     this.scoreText.setText(this.registry.values.score);
-    const r = Math.round(Math.random()*8+1)
+    const r = Math.round(Math.random() * 8 + 1);
     this.enemies.add(
-      new Enemy({
-        scene: this,
-        x: this.sys.canvas.width + 10,
-        y: this.sys.canvas.height - 200,
-        frame: 0,
-        texture: "enemy"+r,
-      }, 0.3)
+      new Enemy(
+        {
+          scene: this,
+          x: this.sys.canvas.width + 10,
+          y: this.sys.canvas.height,
+          frame: 0,
+          texture: "enemy" + r,
+        },
+        0.3
+      )
     );
     const delay = Math.random() * 1500 + 3000;
     this.time.delayedCall(delay, this.addBear, null, this);

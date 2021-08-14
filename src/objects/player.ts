@@ -35,8 +35,8 @@ export class Player extends Phaser.GameObjects.Sprite {
 
     // physics
     this.scene.physics.world.enable(this);
-    this.body.setGravityY(500);
     this.body.setSize(204, 204);
+    this.body.collideWorldBounds = true;
 
     // input
     this.jumpKey = this.scene.input.keyboard.addKey(
@@ -47,30 +47,13 @@ export class Player extends Phaser.GameObjects.Sprite {
   }
 
   update(): void {
-    // handle angle change
-    if (this.angle < 0) {
-      this.angle += 2;
-    }
 
     // handle input
-    if (this.jumpKey.isDown && !this.isFlapping) {
+    if (this.body.velocity.y == 0 && this.jumpKey.isDown && !this.isFlapping) {
       this.isFlapping = true;
-      this.body.setVelocityY(-450);
-      this.body.setGravityY(700);
-      this.scene.tweens.add({
-        targets: this,
-        props: { angle: -15 },
-        duration: 25,
-        });
+      this.body.setVelocityY(-990);
     } else if (this.jumpKey.isUp && this.isFlapping) {
       this.isFlapping = false;
-    }
-
-    // check if off the screen
-    if (this.y + this.height >= this.scene.sys.canvas.height) {
-      this.y = this.scene.sys.canvas.height - this.height - 10;
-      this.body.setVelocityY(0);
-      this.body.setGravityY(0);
     }
   }
 }

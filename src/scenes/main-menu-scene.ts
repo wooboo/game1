@@ -29,7 +29,7 @@ export class MainMenuScene extends Phaser.Scene {
       this.titleBitmapText.width
     );
 
-    this.playBitmapText = this.add.bitmapText(0, 300, 'font', 'Space: PLAY', 25);
+    this.playBitmapText = this.add.bitmapText(0, 300, 'font', 'SPACE: PLAY', 45);
 
     this.playBitmapText.x = this.getCenterXPositionOfBitmapText(
       this.playBitmapText.width
