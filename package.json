@@ -18,6 +18,10 @@
     "start": "webpack --mode development && webpack serve --mode development",
     "build": "webpack --mode production"
   },
+  "engines": {
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.22.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/digitsensitive/phaser3-typescript.git"
