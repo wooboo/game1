@@ -21,7 +21,7 @@ export class MainMenuScene extends Phaser.Scene {
       0,
       200,
       'font',
-      'FLAPPY BIRD!!!',
+      'GUBAL JUMP!!!',
       30
     );
 
